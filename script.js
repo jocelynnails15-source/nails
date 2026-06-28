@@ -192,7 +192,7 @@ await emailjs.send(
   EMAILJS_TEMPLATE_ID,
   {
     nombre: "Jocelyn",
-    correo: "TU_CORREO_AQUI",
+    correo: "jocelynnails15@gmail.com",
     telefono: telefono,
     servicio: servicios[servicio.value].nombre,
     fecha: fecha.value,
