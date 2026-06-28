@@ -1,6 +1,5 @@
-const SUPABASE_URL = "https://ysbqwlewtmuthvmazdqj.supabase.co/rest/v1/";
+const SUPABASE_URL = "https://ysbqwlewtmuthvmazdqj.supabase.co";
 const SUPABASE_KEY = "sb_publishable_9bF1ar95mgilBY4Y6QCnmQ_y04oeph-";
-
 const EMAILJS_PUBLIC_KEY = "bL3T113OtDtDDrDCy";
 const EMAILJS_SERVICE_ID = "service_4el2ws8";
 const EMAILJS_TEMPLATE_ID = "template_xim0haq";
