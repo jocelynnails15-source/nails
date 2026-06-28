@@ -171,12 +171,27 @@ if(error){
   mensaje.textContent = "❌ Error: " + error.message;
   return;
 }
+// Correo para la clienta
 await emailjs.send(
   EMAILJS_SERVICE_ID,
   EMAILJS_TEMPLATE_ID,
   {
     nombre: nombre,
     correo: correo,
+    telefono: telefono,
+    servicio: servicios[servicio.value].nombre,
+    fecha: fecha.value,
+    hora: horaSeleccionada
+  }
+);
+
+// Correo aviso para Jocelyn
+await emailjs.send(
+  EMAILJS_SERVICE_ID,
+  EMAILJS_TEMPLATE_ID,
+  {
+    nombre: "Jocelyn",
+    correo: ""jocelynnails15@gmail.com"",
     telefono: telefono,
     servicio: servicios[servicio.value].nombre,
     fecha: fecha.value,
