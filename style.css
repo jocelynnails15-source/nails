@@ -446,3 +446,22 @@ footer img{
   font-weight:900;
   color:#c82782;
 }
+/* Categorías de la galería */
+details{
+    margin-bottom:20px;
+}
+
+details summary{
+    font-size:40px;
+    font-weight:700;
+    color:#222;
+    cursor:pointer;
+    list-style:none;
+    padding:8px 0;
+    transition:.3s;
+}
+
+details summary:hover{
+    color:#ff2f92;
+    transform:translateX(8px);
+}
