@@ -1,4 +1,4 @@
-const SUPABASE_URL = "https://ysbqwlewtmuthvmazdqj.supabase.co";
+const SUPABASE_URL = "https://ysbqwlewtmuthvmazdqj.supabase.com";
 const SUPABASE_KEY = "sb_publishable_9bF1ar95mgilBY4Y6QCnmQ_y04oeph-";
 const EMAILJS_PUBLIC_KEY = "bL3T113OtDtDDrDCy";
 const EMAILJS_SERVICE_ID = "service_4el2ws8";
