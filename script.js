@@ -146,13 +146,11 @@ const { data, error } = await db.from("Reservas").insert({
     hora: horaSeleccionada
   });
 
-if (error) {
-  console.error(error);
-  alert(JSON.stringify(error, null, 2));
-  mensaje.textContent = "❌ No se pudo guardar la reserva.";
+if(error){
+  console.error("ERROR SUPABASE:", error);
+  mensaje.textContent = "❌ Error: " + error.message;
   return;
 }
-
 await emailjs.send(
   EMAILJS_SERVICE_ID,
   EMAILJS_TEMPLATE_ID,
