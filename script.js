@@ -50,7 +50,7 @@ function calcularHoras(fechaISO, reservas, servicioElegido){
   const dia = diaSemana(fechaISO);
   if(dia === 0) return [];
 
-  let horas = dia === 6 ? ["11:00", "16:00"] : ["11:00", "15:00", "17:00"];
+  let horas = dia === 6 ? ["11:00", "16:00"] : ["10:00", "15:00", "17:00"];
 
   const tomadas = reservas.map(r => r.hora);
   const hayPolyGel15 = reservas.some(r => r.servicio.includes("PolyGel") && r.hora === "15:00");
