@@ -50,46 +50,55 @@ function calcularHoras(fechaISO, reservas, servicioElegido){
   const dia = diaSemana(fechaISO);
   if(dia === 0) return [];
 
-  let horas = dia === 6 ? ["10:00", "16:00"] : ["10:00", "15:00", "17:00"];
+  // Lunes a viernes: 10, 15, 17 y 19
+  // Sábado: 10 y 16
+  let horas = dia === 6 ? ["10:00", "16:00"] : ["10:00", "15:00", "17:00", "19:00"];
 
   const tomadas = reservas.map(r => r.hora);
 
-  const hayPolyGel15 = reservas.some(r => 
+  const hayPolyGel15 = reservas.some(r =>
     r.servicio.includes("PolyGel") && r.hora === "15:00"
   );
 
-  const hayPolyGel17 = reservas.some(r => 
+  const hayPolyGel17 = reservas.some(r =>
     r.servicio.includes("PolyGel") && r.hora === "17:00"
   );
 
+  // Si toman PolyGel a las 15:00, aparece 18:00
   if(hayPolyGel15 && !tomadas.includes("18:00")){
     horas.push("18:00");
   }
 
-  if(hayPolyGel17 && !tomadas.includes("20:00")){
-    horas.push("20:00");
+  // Si toman PolyGel a las 17:00, se reemplaza 19:00 por 20:00
+  if(hayPolyGel17){
+    horas = horas.filter(h => h !== "19:00");
+    if(!tomadas.includes("20:00")){
+      horas.push("20:00");
+    }
   }
 
   if(servicioElegido === "polygel"){
     horas = horas.filter(h => {
       if(h === "18:00") return false;
       if(h === "20:00") return false;
+      if(h === "19:00") return false;
+      if(h === "16:00") return false;
       if(tomadas.includes(h)) return false;
       if(h === "15:00" && tomadas.includes("17:00")) return false;
-      if(h === "16:00") return false;
+      if(h === "17:00" && tomadas.includes("19:00")) return false;
       return true;
     });
   } else {
     horas = horas.filter(h => {
       if(tomadas.includes(h)) return false;
       if(hayPolyGel15 && h === "17:00") return false;
+      if(hayPolyGel17 && h === "19:00") return false;
       return true;
     });
   }
 
   return horas;
 }
-
 async function cargarHoras(){
   horasBox.innerHTML = "";
   horaSeleccionada = "";
