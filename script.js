@@ -146,8 +146,9 @@ form.addEventListener("submit", async e => {
     hora: horaSeleccionada
   });
 
-if(error){
+if (error) {
   console.error(error);
+  alert(JSON.stringify(error, null, 2));
   mensaje.textContent = "❌ No se pudo guardar la reserva.";
   return;
 }
