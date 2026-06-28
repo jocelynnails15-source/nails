@@ -52,7 +52,7 @@ function calcularHoras(fechaISO, reservas, servicioElegido){
 
   // Lunes a viernes: 10, 15, 17 y 19
   // Sábado: 10 y 16
-  let horas = dia === 6 ? ["10:00", "16:00"] : ["10:00", "15:00", "17:00", "19:00"];
+  let horas = dia === 6 ? ["11:00", "16:00"] : ["10:00", "15:00", "17:00", "19:00"];
 
   const tomadas = reservas.map(r => r.hora);
 
