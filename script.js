@@ -158,19 +158,20 @@ form.addEventListener("submit", async e => {
   }
 
 const { data, error } = await db.from("Reservas").insert({
-    nombre,
-    telefono,
-    correo,
-    servicio: servicios[servicio.value].nombre,
-    fecha: fecha.value,
-    hora: horaSeleccionada
-  });
+  nombre,
+  telefono,
+  correo,
+  servicio: servicios[servicio.value].nombre,
+  fecha: fecha.value,
+  hora: horaSeleccionada
+});
 
 if(error){
   console.error("ERROR SUPABASE:", error);
   mensaje.textContent = "❌ Error: " + error.message;
   return;
 }
+
 // Correo para la clienta
 await emailjs.send(
   EMAILJS_SERVICE_ID,
@@ -191,7 +192,7 @@ await emailjs.send(
   EMAILJS_TEMPLATE_ID,
   {
     nombre: "Jocelyn",
-    correo: ""jocelynnails15@gmail.com"",
+    correo: "TU_CORREO_AQUI",
     telefono: telefono,
     servicio: servicios[servicio.value].nombre,
     fecha: fecha.value,
