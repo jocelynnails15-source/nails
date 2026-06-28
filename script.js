@@ -172,36 +172,40 @@ if(error){
   return;
 }
 
-// Correo para la clienta
-await emailjs.send(
-  EMAILJS_SERVICE_ID,
-  EMAILJS_TEMPLATE_ID,
-  {
-    nombre: nombre,
-    correo: correo,
-    telefono: telefono,
-    servicio: servicios[servicio.value].nombre,
-    fecha: fecha.value,
-    hora: horaSeleccionada
-  }
-);
+try {
+  // Correo para la clienta
+  await emailjs.send(
+    EMAILJS_SERVICE_ID,
+    EMAILJS_TEMPLATE_ID,
+    {
+      nombre: nombre,
+      correo: correo,
+      telefono: telefono,
+      servicio: servicios[servicio.value].nombre,
+      fecha: fecha.value,
+      hora: horaSeleccionada
+    }
+  );
 
-// Correo aviso para Jocelyn
-await emailjs.send(
-  EMAILJS_SERVICE_ID,
-  EMAILJS_TEMPLATE_ID,
-  {
-    nombre: "Jocelyn",
-    correo: "jocelynnails15@gmail.com",
-    telefono: telefono,
-    servicio: servicios[servicio.value].nombre,
-    fecha: fecha.value,
-    hora: horaSeleccionada
-  }
-);
+  // Correo aviso para Jocelyn
+  await emailjs.send(
+    EMAILJS_SERVICE_ID,
+    EMAILJS_TEMPLATE_ID,
+    {
+      nombre: "Jocelyn",
+      correo: "TU_CORREO_AQUI",
+      telefono: telefono,
+      servicio: servicios[servicio.value].nombre,
+      fecha: fecha.value,
+      hora: horaSeleccionada
+    }
+  );
+
+} catch (emailError) {
+  console.error("ERROR EMAILJS:", emailError);
+}
 
 form.reset();
 await cargarHoras();
 
-mensaje.textContent = "✅ Reserva agendada correctamente. Revisa tu correo de confirmación (recuerda revisar tu bandeja de spam), sino comunicate directamente a mi telefono 💅✨";
-});
+mensaje.textContent = "✅ Reserva agendada correctamente. Revisa tu correo de confirmación 💅✨";
