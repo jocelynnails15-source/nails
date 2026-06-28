@@ -137,7 +137,7 @@ form.addEventListener("submit", async e => {
     return;
   }
 
-  const { error } = await db.from("Reservas").insert({
+const { data, error } = await db.from("Reservas").insert({
     nombre,
     telefono,
     correo,
