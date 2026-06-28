@@ -1,4 +1,4 @@
-const SUPABASE_URL = "https://ysbqwlewtmuthvmazdqj.supabase.com";
+const SUPABASE_URL = "https://ysbqwlewtmuthvmazdqj.supabase.co";
 const SUPABASE_KEY = "sb_publishable_9bF1ar95mgilBY4Y6QCnmQ_y04oeph-";
 const EMAILJS_PUBLIC_KEY = "bL3T113OtDtDDrDCy";
 const EMAILJS_SERVICE_ID = "service_4el2ws8";
@@ -53,15 +53,27 @@ function calcularHoras(fechaISO, reservas, servicioElegido){
   let horas = dia === 6 ? ["10:00", "16:00"] : ["10:00", "15:00", "17:00"];
 
   const tomadas = reservas.map(r => r.hora);
-  const hayPolyGel15 = reservas.some(r => r.servicio.includes("PolyGel") && r.hora === "15:00");
+
+  const hayPolyGel15 = reservas.some(r => 
+    r.servicio.includes("PolyGel") && r.hora === "15:00"
+  );
+
+  const hayPolyGel17 = reservas.some(r => 
+    r.servicio.includes("PolyGel") && r.hora === "17:00"
+  );
 
   if(hayPolyGel15 && !tomadas.includes("18:00")){
     horas.push("18:00");
   }
 
+  if(hayPolyGel17 && !tomadas.includes("20:00")){
+    horas.push("20:00");
+  }
+
   if(servicioElegido === "polygel"){
     horas = horas.filter(h => {
       if(h === "18:00") return false;
+      if(h === "20:00") return false;
       if(tomadas.includes(h)) return false;
       if(h === "15:00" && tomadas.includes("17:00")) return false;
       if(h === "16:00") return false;
